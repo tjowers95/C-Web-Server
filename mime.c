@@ -15,7 +15,7 @@ char* strlower(char* s)
 
 char* mime_type_get(char* filename)
 {
-  char* ext = strrchar(filename,'.');
+  char* ext = strrchr(filename,'.');
 
   if (ext == NULL)
   {

@@ -13,7 +13,7 @@ struct cache_entry
 //A Cache
 struct cache
 {
-  struct hastable* index;
+  struct hashtable* index;
   struct cache_entry* head,* tail;  //Doubly-linked list
   int max_size; 		    //Max Number of Entries
   int size;			    //Current Number of Entries

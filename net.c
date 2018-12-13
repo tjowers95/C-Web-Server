@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <netdb.h>
 #include "net.h"
 void* get_inaddr(struct sockaddr* remote)
 {
@@ -10,7 +12,7 @@ void* get_inaddr(struct sockaddr* remote)
   {
     return &(((struct sockaddr_in*)remote)->sin_addr);
   }
-  return (((struct sockaddr_in6*)remote)->sin6_addr);
+  return &(((struct sockaddr_in6*)remote)->sin6_addr);
 }
 
 int start_listen()
@@ -19,7 +21,7 @@ int start_listen()
   struct addrinfo criteria,* interface,* host;
   int sockopt = 1;
 
-  criteria.ai_family = AF_UNSPEC
+  criteria.ai_family = AF_UNSPEC;
   criteria.ai_socktype = SOCK_STREAM;
   criteria.ai_flags = AI_PASSIVE;
 

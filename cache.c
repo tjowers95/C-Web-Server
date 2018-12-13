@@ -82,7 +82,7 @@ struct cache_entry *dllist_remove_tail(struct cache* cache)
 struct cache* cache_create(int max_size, int hashsize)
 {
   struct cache* cache = malloc(sizeof(*cache));
-  cache.max_size = max_size;
+  cache->max_size = max_size;
 
   if (hashsize)
   {
@@ -90,7 +90,7 @@ struct cache* cache_create(int max_size, int hashsize)
   }
   else
   {
-    cache->index = hashtable_create(0, NULL)
+    cache->index = hashtable_create(0, NULL);
   }
 
   return cache;

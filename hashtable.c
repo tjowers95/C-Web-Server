@@ -187,7 +187,7 @@ void* hashtable_get_bin(struct hashtable* ht, void* key, int key_size)
 
   struct htent* n = llist_find(llist, &cmpent, htcmp);
 
-  if (n == NULL){ return Null;}
+  if (n == NULL){ return NULL;}
 
   return n->data;
 }
@@ -208,7 +208,7 @@ void* hashtable_delete(struct hashtable* ht, char* key)
 
 void* hashtable_delete_bin(struct hashtable* ht, void* key, int key_size)
 {
-  int index = ht->hasf(key, key_size, ht->size);
+  int index = ht->hashf(key, key_size, ht->size);
 
   struct llist* llist = ht->bucket[index];
 
@@ -245,7 +245,7 @@ void foreach_callback(void* vent, void* vpayload)
  *
  * NOTE: Elements returned in random order
  */
-void hashtable_foreach(struct hashtable* ht, void (*f)(void*, void*), void* arg)
+void* hashtable_foreach(struct hashtable* ht, void (*f)(void*, void*), void* arg)
 {
   struct foreach_callback_payload payload;
 

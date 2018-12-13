@@ -142,7 +142,7 @@ void* llist_find(struct llist* llist, void* data, int (*cmpfn)(void*, void*))
  *
  * NOTE: Does not free data - it returns a pointer to it
  */
-void* llist_delet(struct llist* llist, void* data, int (*cmpfn)(void*, void*))
+void* llist_delete(struct llist* llist, void* data, int (*cmpfn)(void*, void*))
 {
   struct llist_node* n = llist->head,* prev = NULL;
 
@@ -155,7 +155,7 @@ void* llist_delet(struct llist* llist, void* data, int (*cmpfn)(void*, void*))
       if (prev == NULL)
       {
         llist->head = n->next;
-	free(n)
+	free(n);
       }
       else
       {
